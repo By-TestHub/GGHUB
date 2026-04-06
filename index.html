@@ -2,26 +2,51 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>BY-TESTHUB | BUY PREMIUM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGHUB | PREMIUM SHOP</title>
     <style>
-        body { background-color: #0d0d0d; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .shop-card { background: linear-gradient(145deg, #222, #111); padding: 40px; border-radius: 25px; text-align: center; border: 2px solid #ffd700; width: 350px; }
-        .price { font-size: 50px; font-weight: bold; color: #ffd700; margin: 20px 0; }
-        .btn-wallet { background-color: #ff5c00; color: white; padding: 15px; border-radius: 15px; text-decoration: none; display: block; font-weight: bold; margin-bottom: 15px; }
-        .btn-confirm { background-color: #25d366; color: white; padding: 15px; border-radius: 15px; text-decoration: none; display: block; font-weight: bold; }
+        body { background-color: #0d0d0d; color: #ffffff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .shop-card { background: #1a1a1a; padding: 30px; border-radius: 20px; border: 2px solid #ffd700; text-align: center; width: 320px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+        .price-tag { font-size: 40px; font-weight: bold; color: #ffd700; margin: 15px 0; }
+        input { width: 90%; padding: 12px; border-radius: 10px; border: 1px solid #333; background: #000; color: #fff; margin-bottom: 20px; text-align: center; font-size: 14px; }
+        .btn-send { background-color: #0084ff; color: #fff; border: none; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-send:hover { background-color: #0073e6; transform: scale(1.02); }
     </style>
 </head>
 <body>
+
     <div class="shop-card">
-        <h1 style="color: #ffd700;">PREMIUM KEY</h1>
-        <p>เข้าใช้งานสคริปต์ได้ถาวร ตลอดชีพ!</p>
-        <div class="price">15฿</div>
+        <h1 style="font-size: 22px; color: #ffd700;">🛒 ซื้อคีย์ถาวร</h1>
+        <p style="font-size: 13px; color: #bbb;">สร้างซองของขวัญ 50฿ แล้ววางลิงก์</p>
         
-        <a href="https://gift.truemoney.com/campaign/?v=xxxx" target="_blank" class="btn-wallet">💳 โอนผ่าน TrueMoney Wallet</a>
+        <div class="price-tag">50 THB</div>
+
+        <input type="text" id="gift-link" placeholder="วางลิงก์ซองอั่งเปาที่นี่">
+
+        <button class="btn-send" onclick="sendToFacebook()">💬 ส่งลิงก์ไปที่ Messenger</button>
         
-        <p style="font-size: 12px; color: #888;">เมื่อโอนเสร็จแล้ว กดปุ่มแจ้งโอนด้านล่างเพื่อรับคีย์</p>
-        
-        <a href="https://www.facebook.com/ka.pao.886028?locale=th_TH" target="_blank" class="btn-confirm">✅ แจ้งโอนเพื่อรับคีย์ถาวร</a>
+        <p style="font-size: 11px; color: #666; margin-top: 15px;">* เมื่อกดส่ง ระบบจะพาไปที่แชทแอดมิน *</p>
     </div>
+
+    <script>
+        function sendToFacebook() {
+            const link = document.getElementById('gift-link').value;
+            
+            // ตรวจสอบว่าใส่ลิงก์หรือยัง
+            if (!link.includes("gift.truemoney.com")) {
+                alert("❌ กรุณาวางลิงก์ซองอั่งเปาที่ถูกต้องก่อนส่งครับ!");
+                return;
+            }
+
+            // 1. แจ้งเตือนลูกค้า
+            alert("กำลังพาท่านไปที่ Messenger... เมื่อถึงแชทแล้วให้กด 'วาง' ลิงก์เพื่อส่งให้แอดมินครับ");
+
+            // 2. เด้งไปที่ Messenger ของลูกพี่ (เปลี่ยน 'ชื่อเฟสบุ๊ค' เป็น ID หรือชื่อเฟสจริง)
+            // ตัวอย่าง: https://m.me/kaprao.dev
+            const facebookID = "ชื่อเฟสบุ๊คลูกพี่"; 
+            window.location.href = "https://m.me/" + facebookID + "?text=ส่งซองอั่งเปาครับ: " + link;
+        }
+    </script>
+
 </body>
 </html>
