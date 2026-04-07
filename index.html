@@ -3,55 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GGHUB | PREMIUM SHOP</title>
+    <title>เมนูอาหารร้านบ้านตั้ม&ตุ๋ย</title>
     <style>
-        body { background-color: #0d0d0d; color: #ffffff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .shop-card { background: #1a1a1a; padding: 35px; border-radius: 25px; border: 2px solid #ffd700; text-align: center; width: 320px; box-shadow: 0 0 25px rgba(255, 215, 0, 0.15); }
-        .price-tag { font-size: 45px; font-weight: bold; color: #ffd700; margin: 20px 0; }
-        .input-label { font-size: 13px; color: #888; margin-bottom: 10px; display: block; }
-        input { width: 90%; padding: 15px; border-radius: 12px; border: 1px solid #333; background: #000; color: #fff; margin-bottom: 25px; text-align: center; font-size: 14px; outline: none; }
-        input:focus { border-color: #ffd700; }
-        .btn-send { background-color: #0084ff; color: #fff; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3); }
-        .btn-send:hover { background-color: #0073e6; transform: translateY(-2px); }
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu-card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* 1. โลโก้ร้านตรงกลางด้านบน */
+        .logo-section {
+            margin-bottom: 40px;
+        }
+        .logo-section img {
+            width: 120px; /* ปรับขนาดโลโก้ตรงนี้ */
+            height: auto;
+            border-radius: 50%;
+        }
+        .logo-section h1 {
+            margin: 10px 0 0 0;
+            font-size: 28px;
+            color: #d35400;
+        }
+
+        /* 2. ระบบคอลัมน์ซ้าย-ขวา */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* แบ่ง 2 ฝั่งซ้ายขวา */
+            gap: 30px;
+            text-align: left;
+        }
+
+        .food-item {
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #eee;
+        }
+
+        /* ชื่ออาหาร */
+        .food-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* รูปอาหาร */
+        .food-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover; /* ให้รูปพอดีกรอบไม่เบี้ยว */
+            border-radius: 10px;
+            margin-bottom: 10px;
+            background-color: #ddd; /* สีสำรองถ้ารูปไม่ขึ้น */
+        }
+
+        /* ราคาข้างล่าง */
+        .food-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #e67e22;
+            display: block;
+            text-align: right;
+        }
+
+        @media (max-width: 600px) {
+            .menu-grid {
+                grid-template-columns: 1fr; /* มือถือให้โชว์แถวเดียว */
+            }
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="shop-card">
-        <h1 style="font-size: 24px; color: #ffd700; margin-bottom: 5px;">PREMIUM KEY</h1>
-        <p style="font-size: 12px; color: #bbb;">ซื้อคีย์ถาวรเพื่อใช้งานตลอดชีพ</p>
-        
-        <div class="price-tag">10 THB</div>
+    <div class="menu-card">
+        <div class="logo-section">
+            <img src="https://via.placeholder.com/120" alt="Logo"> <h1>ร้านอาหารคุณพ่อ</h1>
+        </div>
 
-        <span class="input-label">วางลิงก์ซองอั่งเปา (10 บาท)</span>
-        <input type="text" id="gift-link" placeholder="https://gift.truemoney.com/...">
+        <div class="menu-grid">
+            
+            <div class="food-item">
+                <span class="food-name">ผัดกะเพราสูตรโบราณ</span>
+                <img src="https://via.placeholder.com/300x180" class="food-img" alt="Food"> <span class="food-price">180.-</span>
+            </div>
 
-        <button class="btn-send" onclick="sendToFacebook()">💬 ส่งข้อมูลไปที่แชทแอดมิน</button>
-        
-        <p style="font-size: 11px; color: #555; margin-top: 20px;">เมื่อกดส่ง ระบบจะพาไปที่ Messenger <br>โปรดกดส่งข้อความในแอปเพื่อแจ้งแอดมิน</p>
+            <div class="food-item">
+                <span class="food-name">ต้มยำกุ้งแม่น้ำ</span>
+                <img src="https://via.placeholder.com/300x180" class="food-img" alt="Food"> <span class="food-price">250.-</span>
+            </div>
+
+            <div class="food-item">
+                <span class="food-name">ข้าวผัดปู</span>
+                <img src="https://via.placeholder.com/300x180" class="food-img" alt="Food">
+                <span class="food-price">150.-</span>
+            </div>
+
+            <div class="food-item">
+                <span class="food-name">ปลากะพงทอดน้ำปลา</span>
+                <img src="https://via.placeholder.com/300x180" class="food-img" alt="Food">
+                <span class="food-price">380.-</span>
+            </div>
+
+        </div>
     </div>
-
-    <script>
-        function sendToFacebook() {
-            const link = document.getElementById('gift-link').value;
-            
-            // ตรวจสอบว่าใส่ลิงก์หรือยัง
-            if (!link.includes("gift.truemoney.com")) {
-                alert("❌ กรุณาวางลิงก์ซองอั่งเปาให้ถูกต้องก่อนกดส่งครับ!");
-                return;
-            }
-
-            // แจ้งเตือนก่อนเด้ง
-            alert("กำลังพาท่านไปที่แชทแอดมิน กะเพรา...");
-
-            // เชื่อมเข้า Messenger ของลูกพี่โดยตรง
-            const facebookName = "ka.pao.886028"; 
-            const message = encodeURIComponent("ส่งซองอั่งเปาสำหรับคีย์ถาวรครับ: " + link);
-            
-            // ลิงก์ Deep Link สำหรับเปิด Messenger
-            window.location.href = "https://m.me/" + facebookName + "?text=" + message;
-        }
-    </script>
 
 </body>
 </html>
