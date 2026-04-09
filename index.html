@@ -10,8 +10,34 @@
         
         /* โลโก้ */
         .logo-box { margin-bottom: 30px; }
-        .logo-box img { width: 200px; height: auto; border-radius: 0; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); object-fit: contain; }
-        .logo-box h1 { margin-top: 15px; color: #333; font-size: 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* สลับลำดับใน CSS ให้สอดคล้องกับ HTML */
+        .logo-box img { width: 200px; height: auto; border-radius: 0; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); object-fit: contain; margin-bottom: 15px; } /* เอา margin-top ออก เพิ่ม margin-bottom */
+        .logo-box h1 { color: #333; font-size: 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 0; margin-bottom: 20px; } /* ปรับ margin-top เป็น 0 เพิ่ม margin-bottom สำหรับช่องค้นหา */
+
+        /* --- ระบบค้นหา (คงเดิมตามที่เพิ่มใหม่) --- */
+        .search-container { margin-bottom: 30px; }
+        #searchInput {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 25px;
+            font-size: 18px;
+            font-family: 'Kanit', sans-serif;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        #searchInput:focus {
+            border-color: #e67e22;
+            box-shadow: 0 4px 15px rgba(230,126,34,0.2);
+        }
+        #no-results {
+            display: none; /* ซ่อนไว้ก่อน จะโชว์ตอนค้นไม่เจอ */
+            padding: 40px 20px;
+            color: #777;
+            text-align: center;
+        }
 
         /* Grid */
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; text-align: left; }
@@ -62,11 +88,18 @@
 
     <div class="menu-card">
         <div class="logo-box">
-            <img src="IMG_2551.png" alt="Logo">
-            <h1>เมนูอาหารร้านบ้านตั้ม&ตุ๋ย</h1>
+            <img src="IMG_2551.png" alt="Logo"> <h1>เมนูอาหารร้านบ้านตั้ม&ตุ๋ย</h1> </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="🔍 ค้นหาเมนูอาหาร... (เช่น จ้อปู, ทอด)" onkeyup="searchMenu()">
         </div>
 
-        <div class="menu-grid">
+        <div id="no-results">
+            <h2 style="margin: 0; color: #555;">😕 ไม่พบเมนูที่ค้นหา</h2>
+            <p style="margin: 10px 0 0 0; font-size: 16px;">โปรดตรวจสอบตัวสะกด หรือลองใช้คำค้นหาอื่น</p>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
             <div class="food-item">
                 <span class="food-name">ปลากะพงทอดน้ำปลา ราคาตามน้ำหนัก</span>
                 <img src="IMG_2550.jpeg" class="food-img" onclick="showImage(this.src)">
@@ -131,9 +164,36 @@
     </div>
 
     <script>
+        // ระบบซูมรูปภาพ (ของเดิม)
         function showImage(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        // ระบบค้นหาอาหาร (คงเดิมตามที่เพิ่มใหม่)
+        function searchMenu() {
+            let input = document.getElementById('searchInput').value.toLowerCase(); // รับค่าที่พิมพ์และแปลงเป็นตัวเล็ก
+            let menuItems = document.getElementsByClassName('food-item'); // ดึงกล่องเมนูทั้งหมด
+            let noResults = document.getElementById('no-results'); // กล่องข้อความแจ้งเตือน
+            let hasMatch = false; // ตัวแปรเช็คว่าเจอเมนูไหม
+
+            for (let i = 0; i < menuItems.length; i++) {
+                let foodName = menuItems[i].getElementsByClassName('food-name')[0].innerText.toLowerCase(); // ดึงชื่ออาหาร
+                
+                if (foodName.includes(input)) {
+                    menuItems[i].style.display = ""; // ถ้าตรง ให้แสดง
+                    hasMatch = true;
+                } else {
+                    menuItems[i].style.display = "none"; // ถ้าไม่ตรง ให้ซ่อน
+                }
+            }
+
+            // ถ้าระบบหาไม่เจอเลยสักเมนู ให้โชว์หน้า "ไม่พบข้อมูล"
+            if (hasMatch) {
+                noResults.style.display = "none";
+            } else {
+                noResults.style.display = "block";
+            }
         }
     </script>
 </body>
